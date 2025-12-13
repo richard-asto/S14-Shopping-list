@@ -94,12 +94,20 @@ header h1 {
     color: var(--text-muted);
     justify-content: center;
     align-items: center;
+    line-height: 1;
+    gap: 8px;
+    font-size: 15px;
 }
+
+.btn-clear svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2;
+}
+
 .btn-clear:hover {
     background: var(--blue-soft);
 }
-
-
 
 /* Items */
 .items {
