@@ -1,17 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping List</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    
 
-    
+<body>
+
+    <div>
+        <header>
+            <i data-lucide="shopping-cart"></i>
+            <h1>Shopping List</h1>
+        </header>
+        <form id="item-form">
+            <input type="text" id="item-input" placeholder="Enter item" />
+            <button type="submit">
+                <i data-lucide="square-plus"></i>
+                Add Item
+            </button>
+        </form>
+        <input type="text" id="filter" placeholder="Filter items" />
+        <ul id="item-list"></ul>
+        <button>
+            <i data-lucide="square-x"></i>
+            Clear All
+        </button>
+    </div>
+
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>lucide.createIcons();</script>
     <script src="main.js"></script>
 </body>
+
 </html>
