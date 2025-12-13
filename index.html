@@ -10,21 +10,21 @@
 
 <body>
 
-    <div>
+    <div class="container">
         <header>
             <i data-lucide="shopping-cart"></i>
             <h1>Shopping List</h1>
         </header>
         <form id="item-form">
-            <input type="text" id="item-input" placeholder="Enter item" />
-            <button type="submit">
+            <input type="text" id="item-input" class="form-input" placeholder="Enter item" />
+            <button type="submit" class="btn">
                 <i data-lucide="square-plus"></i>
                 Add Item
             </button>
         </form>
-        <input type="text" id="filter" placeholder="Filter items" />
-        <ul id="item-list"></ul>
-        <button>
+        <input type="text" id="filter" class="form-input-filter" placeholder="Filter items" />
+        <ul id="item-list" class="items"></ul>
+        <button id="clear" class="btn-clear">
             <i data-lucide="square-x"></i>
             Clear All
         </button>

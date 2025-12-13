@@ -1,0 +1,144 @@
+:root {
+    --blue-soft: #dce7f5;
+    --blue-main: #2563eb;
+    --blue-strong: #1e40af;
+    --blue-border: #c7d2fe;
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+    --danger: #dc2626;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--blue-soft);
+    color: var(--text-main);
+}
+
+.container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 24px;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .05);
+}
+
+header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+header h1 {
+    font-weight: 400;
+}
+
+/* Inputs */
+.form-input,
+.form-input-filter {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+    margin-bottom: 18px;
+    border-radius: 8px;
+    outline: none;
+}
+
+.form-input {
+    border: 1px solid var(--blue-border);
+}
+
+.form-input-filter {
+    border: none;
+    border-bottom: 2px solid var(--blue-border);
+    background: transparent;
+}
+
+/* Buttons */
+.btn {
+    width: 100%;
+    background: var(--blue-main);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 15px;
+}
+
+.btn:hover {
+    background: var(--blue-strong);
+}
+
+.btn-clear {
+    display: flex;
+    margin-top: 20px;
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--blue-border);
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--text-muted);
+    justify-content: center;
+    align-items: center;
+}
+.btn-clear:hover {
+    background: var(--blue-soft);
+}
+
+
+
+/* Items */
+.items {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.items li {
+    width: 45%;
+    margin: 0 5px 20px;
+    padding: 12px;
+    border: 1px solid var(--blue-border);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    cursor: pointer;
+    background: #f9fbff;
+}
+
+.items li:hover {
+    background: #eef2ff;
+}
+
+.edit-mode {
+    color: var(--text-muted);
+}
+
+.remove-item {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--danger);
+}
+
+@media (max-width: 500px) {
+    .items li {
+        width: 100%;
+    }
+}
