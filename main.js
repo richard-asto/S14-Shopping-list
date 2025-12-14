@@ -19,7 +19,7 @@ const getItems = () =>
 const setItems = items =>
     localStorage.setItem('items', JSON.stringify(items));
 
-/*-- Renderizado de la lista --*/
+/*-- Funcion de renderizado de la lista --*/
 function render(items = getItems()) {
     list.innerHTML = '';
     items.forEach(item => {
@@ -37,7 +37,7 @@ function render(items = getItems()) {
     toggleUI(items.length);
 }
 
-/*-- Control visual de la interfaz --*/
+/*-- Funcion de control visual de la interfaz --*/
 function toggleUI(hasItems) {
     clearBtn.style.display = hasItems ? 'flex' : 'none';
     filter.style.display = hasItems ? 'block' : 'none';
@@ -58,6 +58,23 @@ function showMessage(text) {
     setTimeout(() => {
         message.style.display = 'none';
     }, 3000);
+}
+
+/*-- Funcion de mensaje confirmacion de eliminacion --*/
+function showConfirm(message, onConfirm) {
+    confirmText.textContent = message;
+    confirmBox.classList.remove('hidden');
+
+    confirmYes.onclick = () => {
+        confirmBox.classList.add('hidden');
+        onConfirm();
+    };
+
+    confirmNo.onclick = () => {
+        confirmBox.classList.add('hidden');
+    };
+
+    lucide.createIcons();
 }
 
 /*-- Agregar o editar ítems (Submit del formulario) --*/
@@ -118,23 +135,6 @@ clearBtn.addEventListener('click', () => {
         }
     );
 });
-
-/*-- Mensaje confirmacion de eliminacion --*/
-function showConfirm(message, onConfirm) {
-    confirmText.textContent = message;
-    confirmBox.classList.remove('hidden');
-
-    confirmYes.onclick = () => {
-        confirmBox.classList.add('hidden');
-        onConfirm();
-    };
-
-    confirmNo.onclick = () => {
-        confirmBox.classList.add('hidden');
-    };
-
-    lucide.createIcons();
-}
 
 /*-- Filtrado en tiempo real --*/
 filter.addEventListener('input', e => {
