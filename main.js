@@ -4,6 +4,11 @@ const list = document.getElementById('item-list');
 const filter = document.getElementById('filter');
 const clearBtn = document.getElementById('clear');
 const submitBtn = form.querySelector('button');
+const message = document.getElementById('message');
+const confirmBox = document.getElementById('confirm-box');
+const confirmYes = document.getElementById('confirm-yes');
+const confirmNo = document.getElementById('confirm-no');
+const confirmText = document.getElementById('confirm-text');
 
 let editItem = null;
 
@@ -17,21 +22,17 @@ const setItems = items =>
 /*-- Renderizado de la lista --*/
 function render(items = getItems()) {
     list.innerHTML = '';
-
     items.forEach(item => {
         const li = document.createElement('li');
         li.dataset.value = item;
-
         li.innerHTML = `
             <span>${item}</span>
             <button class="remove-item">
             <i data-lucide="trash-2"></i>
             </button>
             `;
-
         list.appendChild(li);
     });
-
     lucide.createIcons();
     toggleUI(items.length);
 }
@@ -49,18 +50,32 @@ function toggleUI(hasItems) {
     lucide.createIcons();
 }
 
+/*-- Funcion mostrar mensaje --*/
+function showMessage(text) {
+    message.textContent = text;
+    message.style.display = 'block';
+
+    setTimeout(() => {
+        message.style.display = 'none';
+    }, 3000);
+}
+
 /*-- Agregar o editar ítems (Submit del formulario) --*/
 form.addEventListener('submit', e => {
     e.preventDefault();
     const value = input.value.trim();
-    if (!value) return alert('Please add an item');
-
+    if (!value) {
+        showMessage('Please add an item');
+        return;
+    }
     let items = getItems();
-
     if (editItem) {
         items = items.map(i => i === editItem ? value : i);
     } else {
-        if (items.includes(value)) return alert('Item already exists');
+        if (items.includes(value)) {
+            showMessage('Item already exists');
+            return;
+        }
         items.push(value);
     }
 
@@ -72,15 +87,18 @@ form.addEventListener('submit', e => {
 list.addEventListener('click', e => {
     const li = e.target.closest('li');
     if (!li) return;
-    /*-- Eliminar ítems --*/
+    /*-- Eliminar Item --*/
     if (e.target.closest('.remove-item')) {
-        if (!confirm('Are you sure?')) return;
-        const items = getItems().filter(i => i !== li.dataset.value);
-        setItems(items);
-        render(items);
-
+        showConfirm(
+            'Are you sure you want to delete this item?',
+            () => {
+                const items = getItems().filter(i => i !== li.dataset.value);
+                setItems(items);
+                render(items);
+            }
+        );
     }
-    /*-- Editar ítems --*/
+    /*-- Editar Item --*/
     else {
         editItem = li.dataset.value;
         input.value = editItem;
@@ -92,9 +110,31 @@ list.addEventListener('click', e => {
 
 /*-- Eliminar todos los ítems --*/
 clearBtn.addEventListener('click', () => {
-    localStorage.removeItem('items');
-    render([]);
+    showConfirm(
+        'Are you sure you want to clear all items?',
+        () => {
+            localStorage.removeItem('items');
+            render([]);
+        }
+    );
 });
+
+/*-- Mensaje confirmacion de eliminacion --*/
+function showConfirm(message, onConfirm) {
+    confirmText.textContent = message;
+    confirmBox.classList.remove('hidden');
+
+    confirmYes.onclick = () => {
+        confirmBox.classList.add('hidden');
+        onConfirm();
+    };
+
+    confirmNo.onclick = () => {
+        confirmBox.classList.add('hidden');
+    };
+
+    lucide.createIcons();
+}
 
 /*-- Filtrado en tiempo real --*/
 filter.addEventListener('input', e => {

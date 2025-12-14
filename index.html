@@ -17,6 +17,7 @@
         </header>
         <form id="item-form">
             <input type="text" id="item-input" class="form-input" placeholder="Enter item" />
+            <p id="message" class="message"></p>
             <button type="submit" class="btn">
                 <i data-lucide="square-plus"></i>
                 Add Item
@@ -29,7 +30,21 @@
             Clear All
         </button>
     </div>
-
+    <div id="confirm-box" class="confirm hidden">
+        <div class="confirm-modal">
+            <p id="confirm-text">Are you sure you want to delete this item?</p>
+            <div class="confirm-actions">
+                <button id="confirm-yes" class="btn">
+                    <i data-lucide="check"></i>
+                    Yes
+                </button>
+                <button id="confirm-no" class="btn-clear">
+                    <i data-lucide="x"></i>
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>lucide.createIcons();</script>
     <script src="main.js"></script>

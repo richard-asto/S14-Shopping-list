@@ -62,18 +62,83 @@ header h1 {
     background: transparent;
 }
 
-/* Buttons */
-.btn {
-    width: 100%;
-    background: var(--blue-main);
-    color: var(--white);
-    border: none;
-    border-radius: 8px;
-    padding: 12px;
-    cursor: pointer;
+.message {
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: var(--danger);
+    display: none;
+}
+
+.confirm {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 999;
+}
+
+.confirm-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.confirm-modal {
+    background: #fff;
+    padding: 24px;
+    border-radius: 14px;
+    width: 100%;
+    max-width: 360px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    animation: scaleIn 0.2s ease;
+}
+
+/* Texto */
+.confirm-modal p {
+    margin-bottom: 20px;
+    color: var(--text-main);
+    font-size: 16px;
+}
+
+/* Acciones */
+.confirm-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+/* Animación */
+@keyframes scaleIn {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Buttons */
+.btn {
+    display: flex;
+    margin-top: 20px;
+    width: 100%;
+    background: var(--blue-main);
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--white);
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
     gap: 8px;
     font-size: 15px;
 }
